@@ -11,6 +11,7 @@ public class SetCommand {
     private String variable;
     private Object variableValue;
     private ValueCalculator valueCalculator = new ValueCalculator();
+    private boolean errorOcurred = false;
 
     public SetCommand(InputRead inputReader) {
         this.inputReader = inputReader;
@@ -23,10 +24,10 @@ public class SetCommand {
             variable = inputReader.readVariable();
             if (variables.size() != 0) {
                 temp = replaceVariable(inputReader.readValue(), variables);
-                if (temp != null) {
+                if (temp != "error") {
                     variableValue = valueCalculator.calculate(temp);
                 } else {
-                    variableValue = valueCalculator.calculate(inputReader.readValue());
+                    return variables;
                 }
             } else {
                 variableValue = valueCalculator.calculate(inputReader.readValue());
@@ -38,7 +39,7 @@ public class SetCommand {
         } else {
             System.out.println("Not valid variable");
         }
-        return null;
+        return variables;
     }
 
     private String replaceVariable(String variableValue, HashMap<String, Object> variables) {
@@ -50,9 +51,9 @@ public class SetCommand {
         while (matcher.find()) {
             if (!variables.containsKey(matcher.group())) {
                 System.out.println("ERROR no variable");
-                return "error no variable";
-
+                return "error";
             }
+
             int variable = (int) variables.get(matcher.group());
             String a1 = matcher.group();
             String a2 = String.valueOf((variable));

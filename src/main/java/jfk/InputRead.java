@@ -30,7 +30,7 @@ public class InputRead {
     }
 
     boolean isVariable() {
-        pattern = "[a-zA-Z0-9]+,";
+        pattern = "[a-zA-Z]+,";
         read(pattern);
         return readed != null;
     }

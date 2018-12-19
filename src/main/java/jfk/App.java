@@ -31,10 +31,13 @@ public class App {
 
             input = inputReader.readCommand();
 
-                      if (input.startsWith("s") || input.startsWith("S")) {
-                    SetCommand setCommand = new SetCommand(inputReader);
-                    variablesMap = setCommand.setVariable(variablesMap);
-                    System.out.println(variablesMap);
+            if (input.startsWith("s") || input.startsWith("S")) {
+                SetCommand setCommand = new SetCommand(inputReader);
+                variablesMap = setCommand.setVariable(variablesMap);
+                if (variablesMap == null) {
+                    System.out.println("blad zmienna nie istnieje");
+                }
+                System.out.println(variablesMap);
 
 
             } else {
