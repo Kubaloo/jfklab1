@@ -1,0 +1,12 @@
+﻿set d, (4+6)*2
+print d*2
+print c
+set c, 4-1
+set c, 4-
+print c
+set c, 24
+set e, 0
+set c,e+3+d*2+5-c
+print d+c+e
+print 215
+set addddd, 215

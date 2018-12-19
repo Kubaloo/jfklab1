@@ -14,7 +14,6 @@ public class InputRead {
     }
 
     String readCommand() {
-
         pattern = "(set|Set|SET|print|Print|PRINT)\\s";
         read(pattern, "action");
         return readed;
@@ -29,6 +28,16 @@ public class InputRead {
         return var.substring(0, var.length() - 1);
     }
 
+    String readNumberToPrint() {
+        pattern = "[0-9]+";
+        read(pattern);
+        return readed;
+    }
+    boolean isVariableToPrint(){
+            pattern = "[a-zA-Z]+";
+            read(pattern);
+            return readed != null;
+    }
     boolean isVariable() {
         pattern = "[a-zA-Z]+,";
         read(pattern);
